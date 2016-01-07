@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+_alarm(){
+	( \speaker-test --frequency $1 --test sine )&
+  	pid=$!
+  	\sleep 0.${2}s
+  	\kill -9 $pid
+
+
+
+}
+
+wget -q -O - http://www.yr.no/sted/Frankrike/Provence-Alpes-C%C3%B4te_d%E2%80%99Azur/Isola_2000/langtidsvarsel.html | awk '/title="Nedbør:/ {print $0} ' | grep -o ">.*<" |  tr -d "><"d | tr -d "mm" | sort -n -r | tr "," "." |   awk '{s+=$1} END {print s}'
+

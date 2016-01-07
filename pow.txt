@@ -1,0 +1,3 @@
+awk '/class="command"/ {print $0} /class="num-votes"/' | grep -o ">.*<" | tr -d "><" | awk 'BEGIN{ RS=""; FS="\n";}{for (i=2;i<NF;i+=2){ if($i >= 5){ print $(i-1)}}}'
+
+
